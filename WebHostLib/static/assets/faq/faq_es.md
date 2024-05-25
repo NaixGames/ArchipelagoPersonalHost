@@ -1,4 +1,4 @@
-# Frequently Asked Questions (Modified for Naix's server)
+# Preguntas frecuentes (Modificadas para el server de Naix! EN CONSTRUCCION) 
 
 ## What is a randomizer?
 
