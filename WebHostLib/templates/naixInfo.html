@@ -1,0 +1,23 @@
+{% extends 'pageWrapper.html' %}
+
+{% block head %}
+    <title>>Naix's Info</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="styles/landing.css") }}" />
+{% endblock %}
+
+{% block body %}
+    {% include 'header/oceanIslandHeader.html' %}
+     <div id="landing" class="grass-island">
+            <div id="landing-body">
+                <p id="first-line">[EN] Hello chat!</p>
+                <p>
+		    Asd
+		</p>
+                <p>	
+                    asd
+                </p>
+            </div>
+        </div>
+    </div>
+    {% include 'islandFooter.html' %}
+{% endblock %}
