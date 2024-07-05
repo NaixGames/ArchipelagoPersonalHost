@@ -22,14 +22,14 @@ app.jinja_env.filters['any'] = any
 app.jinja_env.filters['all'] = all
 
 app.config["SELFHOST"] = True  # application process is in charge of running the websites
-app.config["GENERATORS"] = 1  # maximum concurrent world gens
-app.config["HOSTERS"] = 3  # maximum concurrent room hosters
+app.config["GENERATORS"] = 8  # maximum concurrent world gens
+app.config["HOSTERS"] = 8  # maximum concurrent room hosters
 app.config["SELFLAUNCH"] = True  # application process is in charge of launching Rooms.
 app.config["SELFLAUNCHCERT"] = None  # can point to a SSL Certificate to encrypt Room websocket connections
 app.config["SELFLAUNCHKEY"] = None  # can point to a SSL Certificate Key to encrypt Room websocket connections
 app.config["SELFGEN"] = True  # application process is in charge of scheduling Generations.
 app.config["DEBUG"] = False
-app.config["PORT"] = 38281
+app.config["PORT"] = 80
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 64 * 1024 * 1024  # 64 megabyte limit
 # if you want to deploy, make sure you have a non-guessable secret key
@@ -51,7 +51,7 @@ app.config["PONY"] = {
 }
 app.config["MAX_ROLL"] = 20
 app.config["CACHE_TYPE"] = "SimpleCache"
-app.config["HOST_ADDRESS"] = "Test"
+app.config["HOST_ADDRESS"] = ""
 app.config["ASSET_RIGHTS"] = False
 
 cache = Cache()
