@@ -12,34 +12,26 @@
             <img id="landing-logo" src="static/static/branding/landing-logo.png" alt="Archipelago Logo" />
             <h4>multiworld multi-game randomizer</h4>
         </div>
-        <div id="landing-links">
-            <a href="/games" id="far-left-button">Supported<br />Games</a>
-            <a href="/tutorial" id="mid-left-button">Setup Guides</a>
-            <a href="/start-playing" id="mid-button">Start<br />Playing</a>
-            <a href="/faq/en/" id="mid-right-button">F.A.Q.</a>
-            <a href="https://discord.gg/8Z65BR2" id="far-right-button" target="_blank">Discord</a>
-        </div>
         <div id="landing-clouds">
             <img id="cloud1" src="/static/static/backgrounds/clouds/cloud-0001.png"/>
             <img id="cloud2" src="/static/static/backgrounds/clouds/cloud-0002.png"/>
             <img id="cloud3" src="/static/static/backgrounds/clouds/cloud-0003.png"/>
         </div>
-        <div id="landing-decorations">
-            <img id="landing-deco-1" class="landing-deco deco-island" src="/static/static/decorations/island-b.png" />
-            <img id="landing-deco-2" class="landing-deco deco-island" src="/static/static/decorations/island-c.png" />
-            <img id="landing-deco-3" class="landing-deco deco-rock" src="/static/static/decorations/rock-in-water.png" />
-            <img id="landing-deco-4" class="landing-deco deco-rock" src="/static/static/decorations/rock-in-water.png" />
-            <img id="landing-deco-5" class="landing-deco deco-rock" src="/static/static/decorations/rock-in-water.png" />
-            <img id="landing-deco-6" class="landing-deco deco-rock" src="/static/static/decorations/rock-in-water.png" />
-        </div>
         <div id="landing" class="grass-island">
             <div id="landing-body">
-                <p id="first-line">Welcome to Archipelago!</p>
+                <p id="first-line">[EN] Welcome to Archipelago ... for Naix's Server!</p>
                 <p>
+		    This is a mirror web-host of the Archipelago framework for playing randomizer multiworld. This for was
+		    made by Naix for personal use on his Discord server. All credit goes to the original creators of  
+		    <a href="https://archipelago.gg">Archipelago</a>. Please refer to that site if you want to play outside 
+		    Naix's server. The following is the introduction already found on the oficial site.
+		</p>
+                <p>	
                     This is a cross-game modification system which randomizes different games, then uses the result to
                     build a single unified multi-player game. Items from one game may be present in another, and
                     you will need your fellow players to find items you need in their games to help you complete
-                    your own.
+                    your own. For more details and answer to common questions please go to the 
+		    <a href="/faq/en/"> F.A.Q.</a> section.
                 </p>
                 <p>
                     This project is the cumulative effort of many
@@ -50,12 +42,39 @@
                 </p>
                 <p>
                     <a href="{{ url_for("stats") }}">{{ seeds }}</a>
-                    games were generated and
-                    <a href="{{ url_for("stats") }}">{{ rooms }}</a>
-                    were hosted in the last 7 days.
+                    games have been generated in this server.
+
                 </p>
             </div>
         </div>
+
+	 <div id="landing" class="grass-island">
+            <div id="landing-body">
+                <p id="first-line">[ES] Bienvenido a Archipelago ... para el server de Naix!</p>
+                <p>
+		    Esto es una copia del server web del marco Archipelago para jugar multiworld randomizers. Esta copia 
+		    fue realizado por Naix para uso personal en su server de Discord. Todo el crédito va a los creadores 
+		    originales de <a href="https://archipelago.gg">Archipiélago</a>. Consulta ese sitio si quieres jugar 
+		    fuera del servidor de Naix. La siguiente es la introducción a Archipelago que se encuentra en el sitio oficial.
+		</p>
+                <p>	
+                    Este es un sistema de modificación que aleatoriza diferentes juegos y luego usa el resultado para crear un único
+		    juego multiplayer unificado. Los elementos de un juego pueden estar presentes en otro, y necesitarás que tus 
+		    compañeros encuentren los elementos que necesitas en sus juegos para ayudarte a completar el tuyo propio. 
+		    Para mas detalles y respuesta a preguntas comunes, porfavor ver las 
+		    <a href="/faq/es/"> F.A.Q. </a>.
+                </p>
+                <p>
+                    Este proyecto es el esfuerzo acumulativo de muchos
+                    <a href="https://github.com/ArchipelagoMW/Archipelago/graphs/contributors">gente talentosa.</a>
+                    Juntos, han pasado incontables horas creando un enorme depósito de
+                    <a href="https://github.com/ArchipelagoMW/Archipelago">código fuente</a> que se ha convertido
+                    esta loca idea en realidad.
+                </p>
+                <p>
+                    <a href="{{ url_for("stats") }}">{{ seeds }}</a>
+                    juegos han sido generado en este server
+                </p>
+            </div>
     </div>
-    {% include 'islandFooter.html' %}
 {% endblock %}

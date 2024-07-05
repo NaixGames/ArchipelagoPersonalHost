@@ -36,6 +36,11 @@ def page_not_found(err):
 def start_playing():
     return render_template(f"startPlaying.html")
 
+@app.route('/naixInfo')
+@cache.cached()
+def naix_info():
+    return render_template(f"naixInfo.html")
+
 
 # Game Info Pages
 @app.route('/games/<string:game>/info/<string:lang>')
