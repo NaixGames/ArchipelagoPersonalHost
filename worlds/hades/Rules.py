@@ -82,7 +82,7 @@ class HadesLogic(LogicMixin):
         can_win = self._has_defeated_boss("HadesVictory", player, options)
         if (options.weaponsanity.value == 1):
             weapons = options.weapons_clears_needed.value
-            can_win = (can_win) and (self._has_enough_weapons(player,options,weapons))
+            can_win = (can_win) and (self._enough_weapons_victories(player,options,weapons))
         if (options.keepsakesanity.value == 1):
             keepsakes = options.keepsakes_needed.value
             can_win = (can_win) and (self._has_enough_keepsakes(player,keepsakes,options))
@@ -102,6 +102,19 @@ class HadesLogic(LogicMixin):
             return counter > 0
         else:
            return self.has(bossVictory, player)
+
+    def _enough_weapons_victories(self,player:int, options, amount: int) -> bool:
+        if (options.location_system.value == 3):
+            counter=0
+            counter += self.count("HadesVictory"+"SwordWeapon", player)
+            counter += self.count("HadesVictory"+"SpearWeapon", player)
+            counter += self.count("HadesVictory"+"BowWeapon", player)
+            counter += self.count("HadesVictory"+"ShieldWeapon", player)
+            counter += self.count("HadesVictory"+"FistWeapon", player)
+            counter += self.count("HadesVictory"+"GunWeapon", player)
+            return counter >= amount
+        else:
+           return self.has("HadesVictory", player) and self._has_enough_weapons(player, options, amount)
 
 # -----------
 
@@ -151,7 +164,7 @@ def set_rules(world: MultiWorld, player: int, number_items: int, location_table,
         add_rule(world.get_location("EurydiceKeepsake",player), lambda state:  \
                  state._has_defeated_boss("LernieVictory", player, options))
         add_rule(world.get_location("ThanatosKeepsake",player), lambda state:  \
-                state._has_defeated_boss("LernieVictory", player, options))
+                state._has_defeated_boss("HadesVictory", player, options))
         add_rule(world.get_location("PatroclusKeepsake",player), lambda state:  \
                 state._has_defeated_boss("BrosVictory", player, options))
         set_keepsake_balance(world, player, location_table, options)
@@ -199,7 +212,7 @@ def set_store_rules(world: MultiWorld, player: int, location_table, options):
             state.has("FountainTartarusItem", player) and state.has("KeepsakeCollectionItem", player) and  \
             state._has_defeated_boss("MegVictory", player, options))
     set_rule(world.get_location("FountainElysiumLocation", player), lambda state: \
-            state.has("FountainAsphodelItem", player) and state.has("KeepsakeCollectionItem", player) and  \
+            state.has("FountainTartarusItem", player) and state.has("KeepsakeCollectionItem", player) and  \
             state._has_defeated_boss("LernieVictory", player, options))
     
     #Urns
@@ -355,7 +368,7 @@ def set_fates_rules(world: MultiWorld, player: int, location_table, options, sub
                 state._has_defeated_boss("LernieVictory", player, options))
     
     set_rule(world.get_location("PowerWithoutEqual"+subfix, player), lambda state: \
-                state._has_defeated_boss("HadesVictory", player, options))
+                state._has_defeated_boss("BrosVictory", player, options))
     add_rule(world.get_location("DivinePairings"+subfix, player), lambda state: \
                 state._has_defeated_boss("LernieVictory", player, options))
         
@@ -390,14 +403,17 @@ def forbid_important_items_on_late_styx(world: MultiWorld, player: int, options)
                 late_styx_region = world.get_region("StyxLate"+weaponString, player)
                 for location in late_styx_region.locations:
                         add_item_rule(location,
-                                lambda item: item_is_progression(item) == False)
+                                lambda item: item_is_progression(item) == False or item_is_plando(world, item, player))
     else:
         late_styx_region = world.get_region("StyxLate", player)
         for location in late_styx_region.locations:
                 add_item_rule(location,
-                        lambda item: item_is_progression(item) == False)
+                        lambda item: item_is_progression(item) == False or item_is_plando(world, item, player))
                 
 
 #Helper for late styx not having important items. Thanks Scipio.
 def item_is_progression(item: Item) -> bool:
-    return item.classification == ItemClassification.progression
+    return (item.classification == ItemClassification.progression) or (item.classification == ItemClassification.progression_skip_balancing)
+
+def item_is_plando(world: MultiWorld, item: Item, player: int) -> bool:
+    return item in world.plando_items[player]

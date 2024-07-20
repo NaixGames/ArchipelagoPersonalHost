@@ -43,7 +43,6 @@ class HadesWeb(WebWorld):
         "Hades/en",
         ["Naix"]
     )]
-    game = "HADES"
     options_presets = hades_option_presets
 
 
@@ -59,9 +58,9 @@ class HadesWorld(World):
     data_version = 1
     settings: typing.ClassVar[HadesSettings]
     web = HadesWeb()
-    required_client_version = (0, 4, 4)
+    required_client_version = (0, 5, 0)
 
-    polycosmos_version = "0.11"
+    polycosmos_version = "0.12"
 
     item_name_to_id = {name: data.code for name, data in item_table.items()}
     location_table = give_all_locations_table()
